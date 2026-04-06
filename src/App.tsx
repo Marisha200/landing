@@ -85,7 +85,6 @@ const WhyTeachSection = () => (
               src="src/images/marina.jpg" 
               alt="Marina Rabino" 
               className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-              referrerPolicy="no-referrer"
             />
           </div>
           <div className="space-y-6 text-dark/80 text-lg leading-relaxed italic flex-grow">
