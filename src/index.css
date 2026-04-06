@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  
+  /* Custom Reiki Palette */
+  --color-sage: #8A927D;
+  --color-beige: #C9C0AE;
+  --color-dark: #4A4A4A;
+  --color-light: #E5E3DF;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
