@@ -5,6 +5,7 @@
 
 import { motion } from "motion/react";
 import { Calendar, GraduationCap, Sparkles, ArrowRight, Instagram, Mail, MapPin, ChevronDown, Hand } from "lucide-react";
+import marina from "./images/marina.jpg";
 import { useState, useEffect } from "react";
 
 const Navbar = () => {
@@ -82,7 +83,7 @@ const WhyTeachSection = () => (
         <div className="flex flex-col md:flex-row gap-10 items-center md:items-start">
           <div className="w-32 h-32 md:w-40 md:h-40 flex-shrink-0 rounded-2xl overflow-hidden shadow-md">
             <img 
-              src="src/images/marina.jpg" 
+              src={marina}
               alt="Marina Rabino" 
               className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
             />
