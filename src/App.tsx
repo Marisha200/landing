@@ -82,7 +82,7 @@ const WhyTeachSection = () => (
         <div className="flex flex-col md:flex-row gap-10 items-center md:items-start">
           <div className="w-32 h-32 md:w-40 md:h-40 flex-shrink-0 rounded-2xl overflow-hidden shadow-md">
             <img 
-              src="https://picsum.photos/seed/marina/400/400" 
+              src="Marina-foto.jpg" 
               alt="Marina Rabino" 
               className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
               referrerPolicy="no-referrer"
