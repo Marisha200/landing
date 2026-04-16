@@ -259,12 +259,19 @@ const CalendarSection = () => (
           location="Boedo (CABA)"
           dates={[
             { 
+              level: "Nivel II", 
+              date: "25 de Abril", 
+              time: "14:00 a 20:00 hs",
+              price: "$60.000",
+              link: "https://www.rinconzen.com.ar/events/caba-reiki-nivel-ii-linaje-tradicional-japones-sabado-25-de-abril"
+            },
+            { 
               level: "Nivel I", 
-              date: "11 de Abril", 
+              date: "09 de Mayo", 
               time: "14:00 a 20:00 hs",
               price: "$55.000",
-              link: "https://www.rinconzen.com.ar/events/caba-reiki-nivel-i-linaje-tradicional-japones-11-de-abril"
-            },
+              link: "https://www.rinconzen.com.ar/events/caba-reiki-nivel-i-linaje-tradicional-japones-9-de-mayo"
+            }
             { 
               level: "Nivel II", 
               date: "25 de Abril", 
