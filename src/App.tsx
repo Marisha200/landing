@@ -5,7 +5,6 @@
 
 import { motion } from "motion/react";
 import { Calendar, GraduationCap, Sparkles, ArrowRight, Instagram, Mail, MapPin, ChevronDown, Hand } from "lucide-react";
-import marina from "./images/marina.jpg";
 import { useState, useEffect } from "react";
 
 const Navbar = () => {
@@ -83,9 +82,10 @@ const WhyTeachSection = () => (
         <div className="flex flex-col md:flex-row gap-10 items-center md:items-start">
           <div className="w-32 h-32 md:w-40 md:h-40 flex-shrink-0 rounded-2xl overflow-hidden shadow-md">
             <img 
-              src={marina}
+              src="https://picsum.photos/seed/marina/400/400" 
               alt="Marina Rabino" 
               className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+              referrerPolicy="no-referrer"
             />
           </div>
           <div className="space-y-6 text-dark/80 text-lg leading-relaxed italic flex-grow">
@@ -112,36 +112,55 @@ const WhyTeachSection = () => (
   </section>
 );
 
-const LocationCard = ({ title, dates, location, description }: any) => (
+const LocationCard = ({ dates, location, description }: any) => (
   <motion.div 
     whileHover={{ y: -5 }}
-    className="bg-beige p-8 rounded-3xl shadow-sm border border-dark/5 flex flex-col h-full"
+    className="bg-beige/40 p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-dark/5 flex flex-col h-full"
   >
-    <div className="flex items-center gap-3 mb-4">
-      <div className="w-10 h-10 bg-light rounded-xl flex items-center justify-center">
-        <MapPin className="text-sage w-5 h-5" />
+    <div className="flex items-center gap-4 mb-8">
+      <div className="w-12 h-12 bg-light rounded-2xl flex items-center justify-center shadow-sm">
+        <MapPin className="text-sage w-6 h-6" />
       </div>
-      <h3 className="text-xl font-serif text-dark">{location}</h3>
+      <h3 className="text-2xl md:text-3xl font-serif text-dark tracking-tight">{location}</h3>
     </div>
-    {description && <p className="text-dark/60 text-sm mb-6 italic">{description}</p>}
+    {description && <p className="text-dark/60 text-sm mb-8 italic leading-relaxed">{description}</p>}
     <div className="space-y-6 flex-grow">
       {dates.map((d: any, i: number) => (
-        <div key={i} className="border-l-2 border-sage/30 pl-4 py-1 flex flex-col gap-3">
-          <div>
-            <div className="flex justify-between items-start">
-              <p className="text-xs font-bold text-sage uppercase tracking-wider">{d.level}</p>
-              {d.price && <p className="text-xs font-bold text-dark/60">{d.price}</p>}
+        <div 
+          key={i} 
+          className="relative p-6 rounded-[2rem] border bg-light border-sage/20 shadow-md ring-1 ring-sage/5 transition-all duration-300"
+        >
+          {i === 0 && (
+            <div className="absolute -top-3 left-6 bg-sage text-light text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-[0.2em] shadow-sm">
+              Próxima fecha
             </div>
-            <p className="text-dark/80 font-medium">{d.date} — {d.time}</p>
+          )}
+          <div className="flex flex-col gap-5">
+            <div>
+              <div className="flex justify-between items-start mb-2">
+                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-sage">
+                  {d.level}
+                </p>
+                {d.price && <p className="text-xs font-bold text-dark/30 tracking-tight">{d.price}</p>}
+              </div>
+              <div className="flex flex-col gap-1">
+                <p className="text-xl font-medium tracking-tight text-dark">
+                  {d.date}
+                </p>
+                <p className="text-xs text-dark/60">
+                  {d.time} hs
+                </p>
+              </div>
+            </div>
+            <a 
+              href={d.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center text-xs font-bold py-3.5 px-6 rounded-2xl border bg-sage text-light border-sage shadow-sm hover:shadow-lg hover:bg-[#7a846c] hover:-translate-y-0.5 transition-all duration-300"
+            >
+              Inscribirme al {d.level}
+            </a>
           </div>
-          <a 
-            href={d.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-light text-dark text-xs font-bold py-2 px-4 rounded-lg border border-dark/10 hover:bg-sage hover:text-light hover:border-sage transition-all"
-          >
-            Inscribirme al {d.level}
-          </a>
         </div>
       ))}
     </div>
@@ -199,7 +218,7 @@ const LearnSection = () => (
           </div>
           <div className="absolute -bottom-6 -left-6 bg-sage text-light p-8 rounded-2xl shadow-xl hidden lg:block">
             <p className="text-sm opacity-90 uppercase tracking-widest mb-2 text-light/80">Próximas fechas</p>
-            <p className="text-3xl font-serif">Abril 2026</p>
+            <p className="text-3xl font-serif">Mayo 2026</p>
           </div>
         </div>
       </div>
@@ -254,42 +273,23 @@ const CalendarSection = () => (
         </p>
       </div>
       
-      <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <div className="flex justify-center max-w-xl mx-auto w-full">
         <LocationCard 
           location="Boedo (CABA)"
           dates={[
             { 
-              level: "Nivel II", 
-              date: "25 de Abril", 
-              time: "14:00 a 20:00 hs",
-              price: "$60.000",
-              link: "https://www.rinconzen.com.ar/events/caba-reiki-nivel-ii-linaje-tradicional-japones-sabado-25-de-abril"
-            },
-            { 
               level: "Nivel I", 
-              date: "09 de Mayo", 
-              time: "14:00 a 20:00 hs",
+              date: "9 de Mayo", 
+              time: "14:00 a 20:00",
               price: "$55.000",
-              link: "https://www.rinconzen.com.ar/events/caba-reiki-nivel-i-linaje-tradicional-japones-9-de-mayo"
-            }            
-          ]}
-        />
-        <LocationCard 
-          location="Lanús Oeste (Lanusita)"
-          dates={[
-            { 
-              level: "Nivel I", 
-              date: "18 de Abril", 
-              time: "14:00 a 20:00 hs",
-              price: "$55.000",
-              link: "https://www.rinconzen.com.ar/events/lanus-oeste-reiki-nivel-i-linaje-tradicional-japones-18-de-abril-lanus-oeste"
+              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20I%20en%20Boedo%20el%209%20de%20mayo."
             },
             { 
               level: "Nivel II", 
-              date: "2 de Mayo", 
-              time: "14:00 a 20:00 hs",
+              date: "30 de Mayo", 
+              time: "14:00 a 20:00",
               price: "$60.000",
-              link: "https://www.rinconzen.com.ar/events/lanus-oeste-reiki-nivel-ii-linaje-tradicional-japones-sabado-2-de-mayo"
+              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20II%20en%20Boedo%20el%2030%20de%20mayo."
             }
           ]}
         />
