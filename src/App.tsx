@@ -3,11 +3,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { motion } from "motion/react";
-import { Calendar, GraduationCap, Sparkles, ArrowRight, Instagram, Mail, MapPin, ChevronDown, Hand } from "lucide-react";
-import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { Calendar, GraduationCap, Sparkles, ArrowRight, Instagram, Mail, MapPin, ChevronDown, Hand, X, Send, CheckCircle, Smartphone, User } from "lucide-react";
+import React, { useState, useEffect } from "react";
 
-const Navbar = () => {
+const Navbar = ({ onOpenGiftModal }: { onOpenGiftModal: () => void }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -23,19 +23,19 @@ const Navbar = () => {
           <Sparkles className="text-sage w-6 h-6" />
           <span className="text-xl font-serif tracking-tight text-dark">Rincón Zen</span>
         </div>
-        <div className="hidden md:flex gap-8 text-sm font-medium text-dark/70 uppercase tracking-widest">
+        <div className="hidden md:flex gap-8 text-sm font-medium text-dark/70 uppercase tracking-widest items-center">
           <a href="#cursos" className="hover:text-sage transition-colors">Cursos Reiki</a>
           <a href="#beneficios" className="hover:text-sage transition-colors">Beneficios</a>
           <a href="#calendario" className="hover:text-sage transition-colors">Fechas</a>
           <a href="#historia" className="hover:text-sage transition-colors">¿Por qué enseño Reiki?</a>
           <a href="#contacto" className="hover:text-sage transition-colors">Contacto</a>
-          <a 
-            href="#regala-bienestar" 
+          <button 
+            onClick={onOpenGiftModal}
             className="bg-sage text-light px-4 py-2 rounded-full text-xs font-bold hover:bg-[#7a846c] transition-all flex items-center gap-2 shadow-md"
           >
             Regalá Bienestar
             <Sparkles className="w-3 h-3" />
-          </a>
+          </button>
         </div>
       </div>
     </nav>
@@ -305,7 +305,232 @@ const CalendarSection = () => (
   </section>
 );
 
-const GiftSection = () => (
+const GiftModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    recipientName: '',
+    message: '',
+    buyerName: '',
+    buyerEmail: '',
+    buyerPhone: ''
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStep(2);
+  };
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 md:p-6 bg-dark/95 backdrop-blur-md">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            className="bg-light rounded-[2.5rem] w-full max-w-2xl max-h-[90vh] overflow-y-auto relative shadow-2xl"
+          >
+            <button 
+              onClick={onClose}
+              className="absolute top-6 right-6 w-10 h-10 bg-dark/5 hover:bg-dark/10 rounded-full flex items-center justify-center transition-all z-10"
+            >
+              <X className="w-5 h-5 text-dark" />
+            </button>
+
+            {step === 1 ? (
+              <div className="p-8 md:p-12">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-12 h-12 bg-sage/10 rounded-2xl flex items-center justify-center">
+                    <Sparkles className="text-sage w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-serif text-dark">Regalá Bienestar</h3>
+                    <p className="text-xs text-sage font-bold uppercase tracking-widest">Nivel I de Reiki — $55.000</p>
+                  </div>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold text-dark/40 uppercase tracking-widest ml-1">Tu Nombre</label>
+                      <div className="relative">
+                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-dark/20" />
+                        <input 
+                          required
+                          type="text"
+                          placeholder="Juan Pérez"
+                          className="w-full bg-beige/30 border border-dark/5 rounded-2xl py-4 pl-12 pr-6 focus:outline-none focus:border-sage/50 transition-all text-dark"
+                          value={formData.buyerName}
+                          onChange={e => setFormData({...formData, buyerName: e.target.value})}
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold text-dark/40 uppercase tracking-widest ml-1">Tu Email</label>
+                      <div className="relative">
+                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-dark/20" />
+                        <input 
+                          required
+                          type="email"
+                          placeholder="juan@ejemplo.com"
+                          className="w-full bg-beige/30 border border-dark/5 rounded-2xl py-4 pl-12 pr-6 focus:outline-none focus:border-sage/50 transition-all text-dark"
+                          value={formData.buyerEmail}
+                          onChange={e => setFormData({...formData, buyerEmail: e.target.value})}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-dark/40 uppercase tracking-widest ml-1">Tu Celular</label>
+                    <div className="relative">
+                      <Smartphone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-dark/20" />
+                      <input 
+                        required
+                        type="tel"
+                        placeholder="11 1234-5678"
+                        className="w-full bg-beige/30 border border-dark/5 rounded-2xl py-4 pl-12 pr-6 focus:outline-none focus:border-sage/50 transition-all text-dark"
+                        value={formData.buyerPhone}
+                        onChange={e => setFormData({...formData, buyerPhone: e.target.value})}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="h-px bg-dark/5 my-8"></div>
+
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-dark/40 uppercase tracking-widest ml-1">Nombre del agasajado/a</label>
+                    <input 
+                      required
+                      type="text"
+                      placeholder="Nombre de quien recibe el regalo"
+                      className="w-full bg-beige/30 border border-dark/5 rounded-2xl py-4 px-6 focus:outline-none focus:border-sage/50 transition-all text-dark"
+                      value={formData.recipientName}
+                      onChange={e => setFormData({...formData, recipientName: e.target.value})}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <label className="text-xs font-bold text-dark/40 uppercase tracking-widest ml-1">Mensaje para el destinatario</label>
+                      <span className="text-[10px] text-dark/30">{formData.message.length}/250</span>
+                    </div>
+                    <textarea 
+                      maxLength={250}
+                      rows={3}
+                      placeholder="Escribí unas palabras lindas para tu regalo..."
+                      className="w-full bg-beige/30 border border-dark/5 rounded-2xl py-4 px-6 focus:outline-none focus:border-sage/50 transition-all text-dark resize-none"
+                      value={formData.message}
+                      onChange={e => setFormData({...formData, message: e.target.value})}
+                    ></textarea>
+                  </div>
+
+                  <div className="bg-sage/5 p-6 rounded-2xl border border-sage/10 mb-8">
+                    <p className="text-xs font-bold text-sage uppercase tracking-widest mb-3">Datos para el pago</p>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between group/item">
+                        <p className="text-sm text-dark/70"><strong>CBU:</strong> 0110008230000808072479</p>
+                        <button 
+                          type="button"
+                          onClick={() => {
+                            navigator.clipboard.writeText("0110008230000808072479");
+                          }}
+                          className="text-[10px] bg-sage/10 text-sage px-2 py-1 rounded-md opacity-0 group-hover/item:opacity-100 transition-all hover:bg-sage hover:text-light"
+                        >
+                          Copiar
+                        </button>
+                      </div>
+                      <div className="flex items-center justify-between group/item">
+                        <p className="text-sm text-dark/70"><strong>Alias:</strong> rincon.zen</p>
+                        <button 
+                          type="button"
+                          onClick={() => {
+                            navigator.clipboard.writeText("rincon.zen");
+                          }}
+                          className="text-[10px] bg-sage/10 text-sage px-2 py-1 rounded-md opacity-0 group-hover/item:opacity-100 transition-all hover:bg-sage hover:text-light"
+                        >
+                          Copiar
+                        </button>
+                      </div>
+                      <p className="text-sm text-dark/70"><strong>Titular:</strong> Marina Rabino</p>
+                    </div>
+                  </div>
+
+                  <button 
+                    type="submit"
+                    className="w-full bg-sage text-light py-5 rounded-2xl font-bold hover:bg-[#7a846c] shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 group"
+                  >
+                    Confirmar datos y continuar
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </form>
+              </div>
+            ) : (
+              <div className="p-10 md:p-12 text-center flex flex-col items-center">
+                <div className="w-20 h-20 bg-sage rounded-full flex items-center justify-center mb-8 shadow-lg shadow-sage/20">
+                  <CheckCircle className="text-light w-10 h-10" />
+                </div>
+                <h3 className="text-3xl font-serif text-dark mb-4">¡Todo listo, {formData.buyerName}!</h3>
+                <div className="space-y-6 text-dark/70 leading-relaxed mb-10 max-w-sm">
+                  <p>
+                    Para completar la compra, por favor, copiá el CBU o alias. Cuando hayas realizado la transferencia, hace click en el botón de enviar comprobante por whatsapp.
+                  </p>
+                  <div className="bg-beige/30 p-4 rounded-xl text-left text-xs border border-dark/5 space-y-3">
+                    <div className="flex items-center justify-between group/success-item">
+                      <p><strong>CBU:</strong> 0110008230000808072479</p>
+                      <button 
+                        type="button"
+                        onClick={() => navigator.clipboard.writeText("0110008230000808072479")}
+                        className="text-[10px] bg-sage text-light px-2 py-1 rounded-md hover:bg-[#7a846c] transition-all font-bold shadow-sm"
+                      >
+                        COPIAR
+                      </button>
+                    </div>
+                    <div className="flex items-center justify-between group/success-item">
+                      <p><strong>Alias:</strong> rincon.zen</p>
+                      <button 
+                        type="button"
+                        onClick={() => navigator.clipboard.writeText("rincon.zen")}
+                        className="text-[10px] bg-sage text-light px-2 py-1 rounded-md hover:bg-[#7a846c] transition-all font-bold shadow-sm"
+                      >
+                        COPIAR
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-4 w-full max-w-xs">
+                  <a 
+                    href={`https://api.whatsapp.com/send?phone=5491149801624&text=${encodeURIComponent(
+                      `¡Hola! Soy ${formData.buyerName}. ` +
+                      `Compré este voucher de Reiki Nivel I para regalarle a ${formData.recipientName}. \n\n` +
+                      `Dedicatoria: \n` +
+                      `"${formData.message}" \n\n` +
+                      `Adjunto también el comprobante de transferencia para confirmar la reserva del voucher.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-[#25D366] text-white py-5 rounded-2xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-3"
+                  >
+                    <Smartphone className="w-5 h-5" />
+                    Enviar datos por WhatsApp
+                  </a>
+                  <button 
+                    onClick={onClose}
+                    className="text-dark/40 text-sm hover:text-dark transition-colors py-2"
+                  >
+                    Cerrar ventana
+                  </button>
+                </div>
+              </div>
+            )}
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+};
+
+const GiftSection = ({ onOpenGiftModal }: { onOpenGiftModal: () => void }) => (
   <section id="regala-bienestar" className="py-24 bg-beige/20 border-y border-dark/5">
     <div className="max-w-7xl mx-auto px-6">
       <div className="bg-light rounded-[3rem] overflow-hidden shadow-xl border border-dark/5 flex flex-col lg:flex-row">
@@ -349,19 +574,15 @@ const GiftSection = () => (
               </li>
             </ul>
           </div>
-          <a 
-            href="#" 
+          <button 
+            onClick={onOpenGiftModal}
             className="inline-flex items-center justify-center bg-sage text-light px-10 py-5 rounded-2xl font-bold hover:bg-[#7a846c] hover:shadow-2xl hover:-translate-y-1 transition-all shadow-lg group"
-            onClick={(e) => {
-              e.preventDefault();
-              alert("Aquí iría el link de pago de MercadoPago configurado específicamente para el voucher.");
-            }}
           >
             Comprar Voucher de Regalo
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </a>
+          </button>
           <p className="text-xs text-dark/40 mt-6 text-center lg:text-left">
-            Al realizar el pago, contactanos por WhatsApp para enviarte el voucher digital.
+            Al completar tus datos, te enviaremos la información de pago para coordinar la entrega.
           </p>
         </div>
       </div>
@@ -472,15 +693,17 @@ El uso de este sitio implica la aceptación de estos términos.`;
 };
 
 export default function App() {
+  const [isGiftModalOpen, setIsGiftModalOpen] = useState(false);
+
   return (
     <div className="min-h-screen font-sans selection:bg-sage/30 selection:text-dark">
-      <Navbar />
+      <Navbar onOpenGiftModal={() => setIsGiftModalOpen(true)} />
       <main>
         <Hero />
         <LearnSection />
         <BenefitsSection />
         <CalendarSection />
-        <GiftSection />
+        <GiftSection onOpenGiftModal={() => setIsGiftModalOpen(true)} />
         <WhyTeachSection />
         <section className="py-24 bg-sage text-light overflow-hidden relative">
           <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
@@ -503,6 +726,7 @@ export default function App() {
         </section>
       </main>
       <Footer />
+      <GiftModal isOpen={isGiftModalOpen} onClose={() => setIsGiftModalOpen(false)} />
     </div>
   );
 }
