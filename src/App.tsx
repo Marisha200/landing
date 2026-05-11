@@ -29,6 +29,13 @@ const Navbar = () => {
           <a href="#calendario" className="hover:text-sage transition-colors">Fechas</a>
           <a href="#historia" className="hover:text-sage transition-colors">¿Por qué enseño Reiki?</a>
           <a href="#contacto" className="hover:text-sage transition-colors">Contacto</a>
+          <a 
+            href="#regala-bienestar" 
+            className="bg-sage text-light px-4 py-2 rounded-full text-xs font-bold hover:bg-[#7a846c] transition-all flex items-center gap-2 shadow-md"
+          >
+            Regalá Bienestar
+            <Sparkles className="w-3 h-3" />
+          </a>
         </div>
       </div>
     </nav>
@@ -298,6 +305,70 @@ const CalendarSection = () => (
   </section>
 );
 
+const GiftSection = () => (
+  <section id="regala-bienestar" className="py-24 bg-beige/20 border-y border-dark/5">
+    <div className="max-w-7xl mx-auto px-6">
+      <div className="bg-light rounded-[3rem] overflow-hidden shadow-xl border border-dark/5 flex flex-col lg:flex-row">
+        <div className="lg:w-1/2 relative h-80 lg:h-auto">
+          <img 
+            src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?q=80&w=1000&auto=format&fit=crop" 
+            alt="Regalo Bienestar" 
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-sage/20 mix-blend-multiply"></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="bg-light/90 backdrop-blur-md p-8 rounded-full">
+              <Sparkles className="text-sage w-12 h-12" />
+            </div>
+          </div>
+        </div>
+        <div className="lg:w-1/2 p-10 md:p-16 flex flex-col justify-center">
+          <span className="text-sage font-medium tracking-[0.3em] uppercase text-xs mb-4 block">Una experiencia única</span>
+          <h2 className="text-4xl md:text-5xl font-serif text-dark mb-6">Regalá Bienestar</h2>
+          <div className="space-y-6 text-dark/80 text-lg leading-relaxed mb-10">
+            <p className="italic font-serif text-xl border-l-4 border-sage/30 pl-6 py-2">
+              "Hay regalos que permanecen en el alma para siempre."
+            </p>
+            <p>
+              ¿Querés sorprender a alguien especial? Ahora podés obsequiar la oportunidad de transitar el camino del Reiki. 
+              Creamos un voucher personalizado que te enviaremos para que puedas entregárselo al destinatario.
+            </p>
+            <ul className="space-y-3 text-base">
+              <li className="flex items-center gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-sage"></div>
+                Sin fecha de vencimiento.
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-sage"></div>
+                Cursos brindados en nuestra sede de Boedo.
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-sage"></div>
+                Voucher para Nivel I de Reiki: <strong className="text-dark">$55.000</strong>
+              </li>
+            </ul>
+          </div>
+          <a 
+            href="#" 
+            className="inline-flex items-center justify-center bg-sage text-light px-10 py-5 rounded-2xl font-bold hover:bg-[#7a846c] hover:shadow-2xl hover:-translate-y-1 transition-all shadow-lg group"
+            onClick={(e) => {
+              e.preventDefault();
+              alert("Aquí iría el link de pago de MercadoPago configurado específicamente para el voucher.");
+            }}
+          >
+            Comprar Voucher de Regalo
+            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </a>
+          <p className="text-xs text-dark/40 mt-6 text-center lg:text-left">
+            Al realizar el pago, contactanos por WhatsApp para enviarte el voucher digital.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
 const Footer = () => {
   const [modalContent, setModalContent] = useState<{ title: string; text: string } | null>(null);
 
@@ -409,6 +480,7 @@ export default function App() {
         <LearnSection />
         <BenefitsSection />
         <CalendarSection />
+        <GiftSection />
         <WhyTeachSection />
         <section className="py-24 bg-sage text-light overflow-hidden relative">
           <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
