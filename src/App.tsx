@@ -87,11 +87,11 @@ const WhyTeachSection = () => (
       <div className="bg-beige p-10 md:p-16 rounded-3xl shadow-sm border border-dark/5 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-2 h-full bg-sage opacity-40"></div>
         <div className="flex flex-col md:flex-row gap-10 items-center md:items-start">
-          <div className="w-32 h-32 md:w-40 md:h-40 flex-shrink-0 rounded-2xl overflow-hidden shadow-md">
+          <div className="w-48 h-48 md:w-56 md:h-56 flex-shrink-0 rounded-full overflow-hidden shadow-2xl border-4 border-white">
             <img 
-              src="https://raw.githubusercontent.com/Marisha200/landing/main/marina.jpg" 
+              src="/marina.jpg" 
               alt="Marina Rabino" 
-              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+              className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />
           </div>
@@ -285,18 +285,25 @@ const CalendarSection = () => (
           location="Boedo (CABA)"
           dates={[
             { 
-              level: "Nivel I", 
-              date: "9 de Mayo", 
-              time: "14:00 a 20:00",
-              price: "$55.000",
-              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20I%20en%20Boedo%20el%209%20de%20mayo."
-            },
-            { 
               level: "Nivel II", 
               date: "30 de Mayo", 
               time: "14:00 a 20:00",
               price: "$60.000",
               link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20II%20en%20Boedo%20el%2030%20de%20mayo."
+            },
+            { 
+              level: "Nivel I", 
+              date: "6 de Junio", 
+              time: "14:00 a 20:00",
+              price: "$55.000",
+              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20I%20en%20Boedo%20el%206%20de%20junio."
+            },
+            { 
+              level: "Nivel I", 
+              date: "20 de Junio", 
+              time: "14:00 a 20:00",
+              price: "$55.000",
+              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20I%20en%20Boedo%20el%2020%20de%20junio."
             }
           ]}
         />
@@ -312,11 +319,72 @@ const GiftModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
     message: '',
     buyerName: '',
     buyerEmail: '',
-    buyerPhone: ''
+    buyerPhone: '+54 9 '
   });
+  const [phoneError, setPhoneError] = useState(false);
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+    
+    // Always maintain prefix
+    if (!value.startsWith('+54 9 ')) {
+      value = '+54 9 ' + value.replace(/^\+54 9\s*/, '');
+    }
+
+    // Get only digits after the prefix, max 11 digits
+    const suffix = value.slice(6).replace(/\D/g, '').slice(0, 11);
+    
+    // Format based on digits
+    let formattedSuffix = '';
+    if (suffix.length > 0) {
+      // Check if it's a 2-digit or 3-digit area code (based on user's manual entry)
+      // We'll support the format: [2-3 digits] [4 digits] [4 digits]
+      
+      // First chunk: 2nd or 3rd digit determines if we should space after 2 or 3
+      // But user specifically wants us to allow 2 or 3 then 4 then 4.
+      // Let's try to detect if they typed more than 2 digits.
+      
+      const chunk1 = suffix.slice(0, 3);
+      const chunk2 = suffix.slice(3, 7);
+      const chunk3 = suffix.slice(7, 11);
+      
+      // If the user has typed 11 digits total (3+4+4), we use the 3-digit area code format
+      // Otherwise we default to 2-digit area code if they typed 10 digits
+      // However, it's easier to just follow the flow: 
+      // We'll allow up to 11 digits total in suffix.
+      
+      if (suffix.length <= 10) {
+        // Assume 2-digit area code (like 11) for common case
+        const area = suffix.slice(0, 2);
+        const mid = suffix.slice(2, 6);
+        const end = suffix.slice(6, 10);
+        formattedSuffix = area + (mid ? ' ' + mid : '') + (end ? ' ' + end : '');
+      } else {
+        // 3-digit area code
+        const area = suffix.slice(0, 3);
+        const mid = suffix.slice(3, 7);
+        const end = suffix.slice(7, 11);
+        formattedSuffix = area + (mid ? ' ' + mid : '') + (end ? ' ' + end : '');
+      }
+    }
+
+    setFormData({ ...formData, buyerPhone: '+54 9 ' + formattedSuffix.trim() });
+    setPhoneError(false);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    const digitsOnly = formData.buyerPhone.replace(/\D/g, '');
+    const suffixDigits = formData.buyerPhone.slice(6).replace(/\D/g, '');
+    
+    // Validate: suffix must be 10 or 11 digits
+    if ((suffixDigits.length !== 10 && suffixDigits.length !== 11) || !formData.buyerPhone.startsWith('+54 9')) {
+      setPhoneError(true);
+      return;
+    }
+    
+    setPhoneError(false);
     setStep(2);
   };
 
@@ -388,12 +456,17 @@ const GiftModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
                       <input 
                         required
                         type="tel"
-                        placeholder="11 1234-5678"
-                        className="w-full bg-beige/30 border border-dark/5 rounded-2xl py-4 pl-12 pr-6 focus:outline-none focus:border-sage/50 transition-all text-dark"
+                        placeholder="+54 9 11 1234 5678"
+                        className={`w-full bg-beige/30 border ${phoneError ? 'border-red-400' : 'border-dark/5'} rounded-2xl py-4 pl-12 pr-6 focus:outline-none focus:border-sage/50 transition-all text-dark`}
                         value={formData.buyerPhone}
-                        onChange={e => setFormData({...formData, buyerPhone: e.target.value})}
+                        onChange={handlePhoneChange}
                       />
                     </div>
+                    {phoneError && (
+                      <p className="text-[10px] text-red-500 font-medium ml-1">
+                        Por favor, ingresá el número completo (+54 9 [2 o 3] [4] [4])
+                      </p>
+                    )}
                   </div>
 
                   <div className="h-px bg-dark/5 my-8"></div>
@@ -495,6 +568,10 @@ const GiftModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
                       >
                         COPIAR
                       </button>
+                    </div>
+                    <div className="pt-2 border-t border-dark/5 space-y-1 opacity-70">
+                      <p><strong>Banco:</strong> Banco Nación</p>
+                      <p><strong>Titular:</strong> Marina Rabino</p>
                     </div>
                   </div>
                 </div>
