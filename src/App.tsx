@@ -225,7 +225,7 @@ const LearnSection = () => (
           </div>
           <div className="absolute -bottom-6 -left-6 bg-sage text-light p-8 rounded-2xl shadow-xl hidden lg:block">
             <p className="text-sm opacity-90 uppercase tracking-widest mb-2 text-light/80">Próximas fechas</p>
-            <p className="text-3xl font-serif">Mayo 2026</p>
+            <p className="text-3xl font-serif">Mayo y Junio</p>
           </div>
         </div>
       </div>
