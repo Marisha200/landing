@@ -89,7 +89,7 @@ const WhyTeachSection = () => (
         <div className="flex flex-col md:flex-row gap-10 items-center md:items-start">
           <div className="w-48 h-48 md:w-56 md:h-56 flex-shrink-0 rounded-full overflow-hidden shadow-2xl border-4 border-white">
             <img 
-              src="https://raw.githubusercontent.com/marisha200/landing/main/marina.png" 
+              src="/marina.jpg" 
               alt="Marina Rabino" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
@@ -225,7 +225,7 @@ const LearnSection = () => (
           </div>
           <div className="absolute -bottom-6 -left-6 bg-sage text-light p-8 rounded-2xl shadow-xl hidden lg:block">
             <p className="text-sm opacity-90 uppercase tracking-widest mb-2 text-light/80">Próximas fechas</p>
-            <p className="text-3xl font-serif">Mayo y Junio</p>
+            <p className="text-3xl font-serif">Junio 2026</p>
           </div>
         </div>
       </div>
@@ -285,17 +285,17 @@ const CalendarSection = () => (
           location="Boedo (CABA)"
           dates={[
             { 
-              level: "Nivel II", 
-              date: "30 de Mayo", 
-              time: "14:00 a 20:00",
-              price: "$60.000",
-              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20II%20en%20Boedo%20el%2030%20de%20mayo."
-            },
-            { 
               level: "Nivel I", 
               date: "6 de Junio", 
               time: "14:00 a 20:00",
               price: "$55.000",
+              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20I%20en%20Boedo%20el%206%20de%20junio."
+            },
+            { 
+              level: "Maestría Reiki 2026", 
+              date: "13 de Junio (de Junio a Diciembre)", 
+              time: "15:00 a 19:00",
+              price: "$45.000",
               link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20I%20en%20Boedo%20el%206%20de%20junio."
             },
             { 
