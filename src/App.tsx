@@ -280,23 +280,16 @@ const CalendarSection = () => (
         </p>
       </div>
       
-      <div className="flex justify-center max-w-xl mx-auto w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto w-full">
         <LocationCard 
           location="Boedo (CABA)"
           dates={[
-            { 
-              level: "Nivel I", 
-              date: "6 de Junio", 
-              time: "14:00 a 20:00",
-              price: "$55.000",
-              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20I%20en%20Boedo%20el%206%20de%20junio."
-            },
             { 
               level: "Maestría Reiki 2026", 
               date: "13 de Junio (de Junio a Diciembre)", 
               time: "15:00 a 19:00",
               price: "$45.000",
-              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20I%20en%20Boedo%20el%206%20de%20junio."
+              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20a%20la%20Maestr%C3%ADa%20Reiki%202026%20en%20Boedo."
             },
             { 
               level: "Nivel I", 
@@ -304,6 +297,19 @@ const CalendarSection = () => (
               time: "14:00 a 20:00",
               price: "$55.000",
               link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20I%20en%20Boedo%20el%2020%20de%20junio."
+            }
+          ]}
+        />
+        <LocationCard 
+          location="Lanús Oeste"
+          description="Zona Lanusita"
+          dates={[
+            { 
+              level: "Nivel I", 
+              date: "27 de Junio", 
+              time: "14:00 a 20:00",
+              price: "$55.000",
+              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20I%20en%20Lan%C3%BAs%20Oeste%20el%2027%20de%20junio."
             }
           ]}
         />
