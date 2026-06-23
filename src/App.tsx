@@ -225,7 +225,7 @@ const LearnSection = () => (
           </div>
           <div className="absolute -bottom-6 -left-6 bg-sage text-light p-8 rounded-2xl shadow-xl hidden lg:block">
             <p className="text-sm opacity-90 uppercase tracking-widest mb-2 text-light/80">Próximas fechas</p>
-            <p className="text-3xl font-serif">Junio 2026</p>
+            <p className="text-3xl font-serif">Julio 2026</p>
           </div>
         </div>
       </div>
@@ -285,18 +285,18 @@ const CalendarSection = () => (
           location="Boedo (CABA)"
           dates={[
             { 
-              level: "Maestría Reiki 2026", 
-              date: "13 de Junio (de Junio a Diciembre)", 
-              time: "15:00 a 19:00",
-              price: "$45.000",
-              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20a%20la%20Maestr%C3%ADa%20Reiki%202026%20en%20Boedo."
-            },
-            { 
               level: "Nivel I", 
-              date: "20 de Junio", 
+              date: "4 de Julio", 
               time: "14:00 a 20:00",
               price: "$55.000",
-              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20I%20en%20Boedo%20el%2020%20de%20junio."
+              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20I%20en%20Boedo%20el%204%20de%20julio."
+            },
+            { 
+              level: "Nivel II", 
+              date: "25 de Julio", 
+              time: "14:00 a 20:00",
+              price: "$55.000",
+              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20II%20en%20Boedo%20el%2025%20de%20julio."
             }
           ]}
         />
@@ -306,10 +306,10 @@ const CalendarSection = () => (
           dates={[
             { 
               level: "Nivel I", 
-              date: "27 de Junio", 
+              date: "18 de Julio", 
               time: "14:00 a 20:00",
               price: "$55.000",
-              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20I%20en%20Lan%C3%BAs%20Oeste%20el%2027%20de%20junio."
+              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20I%20en%20Lan%C3%BAs%20Oeste%20el%2018%20de%20julio."
             }
           ]}
         />
