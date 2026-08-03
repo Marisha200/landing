@@ -4,10 +4,10 @@
  */
 
 import { motion, AnimatePresence } from "motion/react";
-import { Calendar, GraduationCap, Sparkles, ArrowRight, Instagram, Mail, MapPin, ChevronDown, Hand, X, Send, CheckCircle, Smartphone, User } from "lucide-react";
+import { GraduationCap, Sparkles, ArrowRight, Instagram, Mail, MapPin, ChevronDown, Hand, X, CheckCircle, Smartphone, User, MessageCircle, Moon } from "lucide-react";
 import React, { useState, useEffect } from "react";
 
-const Navbar = ({ onOpenGiftModal }: { onOpenGiftModal: () => void }) => {
+const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -17,60 +17,99 @@ const Navbar = ({ onOpenGiftModal }: { onOpenGiftModal: () => void }) => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? "bg-light/90 backdrop-blur-md py-4 shadow-sm" : "bg-transparent py-6"}`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? "bg-light/95 backdrop-blur-md py-4 shadow-sm" : "bg-transparent py-6"}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <div className="flex items-center gap-2">
-          <Sparkles className="text-sage w-6 h-6" />
-          <span className="text-xl font-serif tracking-tight text-dark">Rincón Zen</span>
-        </div>
-        <div className="hidden md:flex gap-8 text-sm font-medium text-dark/70 uppercase tracking-widest items-center">
-          <a href="#cursos" className="hover:text-sage transition-colors">Cursos Reiki</a>
-          <a href="#beneficios" className="hover:text-sage transition-colors">Beneficios</a>
-          <a href="#calendario" className="hover:text-sage transition-colors">Fechas</a>
-          <a href="#historia" className="hover:text-sage transition-colors">¿Por qué enseño Reiki?</a>
+        <a href="#inicio" className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-full border border-sage/40 flex items-center justify-center">
+            <Moon className="text-sage w-4 h-4" />
+          </div>
+          <div>
+            <span className="text-xl font-serif tracking-[0.08em] text-dark block leading-none">Rincón Zen</span>
+            <span className="text-[9px] uppercase tracking-[0.28em] text-dark/45">Spa para el alma</span>
+          </div>
+        </a>
+
+        <div className="hidden md:flex gap-7 text-[11px] font-medium text-dark/65 uppercase tracking-[0.16em] items-center">
+          <a href="#calendario" className="hover:text-sage transition-colors">Agosto</a>
+          <a href="#cursos" className="hover:text-sage transition-colors">Reiki</a>
+          <a href="#beneficios" className="hover:text-sage transition-colors">La experiencia</a>
+          <a href="#historia" className="hover:text-sage transition-colors">Sobre mí</a>
           <a href="#contacto" className="hover:text-sage transition-colors">Contacto</a>
-          <button 
-            onClick={onOpenGiftModal}
-            className="bg-sage text-light px-4 py-2 rounded-full text-xs font-bold hover:bg-[#7a846c] transition-all flex items-center gap-2 shadow-md"
+          <a
+            href="https://wa.me/5491149801624?text=Hola!%20Quisiera%20consultar%20por%20las%20actividades%20de%20agosto%20de%20Rinc%C3%B3n%20Zen."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-sage text-light px-5 py-3 rounded-full text-[10px] font-bold hover:bg-[#7a846c] transition-all flex items-center gap-2 shadow-md"
           >
-            Regalá Bienestar
-            <Sparkles className="w-3 h-3" />
-          </button>
+            <MessageCircle className="w-4 h-4" />
+            WhatsApp
+          </a>
         </div>
       </div>
     </nav>
   );
 };
+
 const Hero = () => (
-  <section className="relative h-screen flex items-center justify-center overflow-hidden bg-light">
-    <div className="absolute inset-0 z-0 opacity-20">
-      <img 
-        src="https://images.unsplash.com/photo-1542640244-7e672d6cef4e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-        alt="Sakura" 
+  <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden bg-light">
+    <div className="absolute inset-0 z-0">
+      <img
+        src="https://images.unsplash.com/photo-1542640244-7e672d6cef4e?q=85&w=1800&auto=format&fit=crop"
+        alt="Paisaje japonés sereno"
         className="w-full h-full object-cover"
         referrerPolicy="no-referrer"
       />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#1f211b]/90 via-[#283025]/65 to-[#283025]/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#1f211b]/45 via-transparent to-transparent" />
     </div>
-    <div className="relative z-10 text-center max-w-3xl px-6">
+
+    <div className="relative z-10 max-w-7xl mx-auto w-full px-6 pt-28 pb-16 grid lg:grid-cols-[1.15fr_0.55fr] gap-12 items-end">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.9 }}
+        className="max-w-3xl"
       >
-        <span className="text-sage font-medium tracking-[0.3em] uppercase text-xs mb-4 block">Reiki Tradicional Japonés</span>
-        <h1 className="text-5xl md:text-7xl font-serif text-dark mb-6 leading-tight">
-          Reiki, un camino de ida <br /> <span className="italic text-sage">a una vida más plena</span>
+        <span className="text-beige font-medium tracking-[0.35em] uppercase text-xs mb-6 block">Calendario · Agosto 2026</span>
+        <h1 className="text-6xl md:text-8xl font-serif text-light mb-7 leading-[0.94] tracking-tight">
+          Agosto en <br /> <span className="italic text-beige">Rincón Zen</span>
         </h1>
-        <p className="text-dark/80 text-lg mb-10 leading-relaxed max-w-2xl mx-auto">
-          Aprendé a trabajar con la energía de forma consciente, a través de tus manos. 
-          Cursos presenciales en Boedo y Lanús Oeste.
+        <p className="text-light/85 text-lg md:text-xl mb-10 leading-relaxed max-w-2xl">
+          Aprender también puede ser una forma de volver a vos. Encuentros, oráculos y formación en Reiki Tradicional Japonés, con contenido profundo y práctica real.
         </p>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <a href="#calendario" className="inline-flex items-center justify-center bg-light text-dark px-8 py-4 rounded-full font-bold hover:bg-beige transition-all shadow-xl">
+            Ver calendario de agosto
+            <ArrowRight className="ml-2 w-4 h-4" />
+          </a>
+          <a
+            href="https://wa.me/5491149801624?text=Hola!%20Quisiera%20consultar%20por%20las%20actividades%20de%20agosto%20de%20Rinc%C3%B3n%20Zen."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center border border-light/40 bg-dark/20 text-light px-8 py-4 rounded-full font-bold hover:bg-light/10 transition-all backdrop-blur-sm"
+          >
+            <MessageCircle className="mr-2 w-5 h-5" />
+            Consultar por WhatsApp
+          </a>
+        </div>
       </motion.div>
+
+      <motion.aside
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.9, delay: 0.2 }}
+        className="hidden lg:block bg-light/90 backdrop-blur-md p-8 rounded-[2rem] border border-light/50 shadow-2xl"
+      >
+        <Sparkles className="w-6 h-6 text-sage mb-5" />
+        <p className="font-serif text-2xl text-dark leading-snug mb-4">“Hoy no hace falta entender todo. Alcanzará con dar un paso.”</p>
+        <p className="text-[10px] text-sage font-bold uppercase tracking-[0.24em]">Omikuji del día</p>
+      </motion.aside>
     </div>
-    <motion.div 
+
+    <motion.div
       animate={{ y: [0, 10, 0] }}
       transition={{ duration: 2, repeat: Infinity }}
-      className="absolute bottom-10 left-1/2 -translate-x-1/2 text-dark/30"
+      className="absolute bottom-8 left-1/2 -translate-x-1/2 text-light/50 z-10"
     >
       <ChevronDown className="w-6 h-6" />
     </motion.div>
@@ -165,7 +204,7 @@ const LocationCard = ({ dates, location, description }: any) => (
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center text-xs font-bold py-3.5 px-6 rounded-2xl border bg-sage text-light border-sage shadow-sm hover:shadow-lg hover:bg-[#7a846c] hover:-translate-y-0.5 transition-all duration-300"
             >
-              Inscribirme al {d.level}
+              Consultar por {d.level}
             </a>
           </div>
         </div>
@@ -225,7 +264,7 @@ const LearnSection = () => (
           </div>
           <div className="absolute -bottom-6 -left-6 bg-sage text-light p-8 rounded-2xl shadow-xl hidden lg:block">
             <p className="text-sm opacity-90 uppercase tracking-widest mb-2 text-light/80">Próximas fechas</p>
-            <p className="text-3xl font-serif">Julio 2026</p>
+            <p className="text-3xl font-serif">Agosto 2026</p>
           </div>
         </div>
       </div>
@@ -271,48 +310,67 @@ const BenefitsSection = () => (
 const CalendarSection = () => (
   <section id="calendario" className="py-24 bg-light">
     <div className="max-w-7xl mx-auto px-6">
-      <div className="text-center max-w-2xl mx-auto mb-16">
-        <span className="text-sage font-medium tracking-[0.2em] uppercase text-xs mb-4 block">Cronograma de Clases</span>
-        <h2 className="text-4xl md:text-5xl font-serif text-dark mb-6">Elegí tu lugar y fecha</h2>
-        <p className="text-dark/70">
-          Dictamos los cursos en espacios armonizados para que tu experiencia sea única. 
-          Anotate con tiempo, los cupos son limitados.
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
+        <div className="max-w-3xl">
+          <span className="text-sage font-medium tracking-[0.24em] uppercase text-xs mb-4 block">Encuentros de agosto</span>
+          <h2 className="text-5xl md:text-6xl font-serif text-dark mb-5 leading-tight">Elegí tu próxima experiencia</h2>
+        </div>
+        <p className="text-dark/65 max-w-md leading-relaxed">
+          Trabajamos con grupos muy reducidos para sostener un espacio cercano, personalizado y con verdadero tiempo para practicar.
         </p>
       </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto w-full">
-        <LocationCard 
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-7 w-full">
+        <LocationCard
+          location="Caballito"
+          description="Una tarde vivencial para abrir los oráculos, escucharte y volver a mirar tu propio mapa con otros ojos."
+          dates={[
+            {
+              level: "Encuentro Oracular",
+              date: "8 de Agosto",
+              time: "15:00 a 20:00",
+              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20el%20Encuentro%20Oracular%20del%208%20de%20agosto%20en%20Caballito."
+            }
+          ]}
+        />
+
+        <LocationCard
           location="Boedo (CABA)"
+          description="Formación presencial de Reiki Tradicional Japonés, con material completo, práctica y acompañamiento."
           dates={[
-            { 
-              level: "Nivel I", 
-              date: "4 de Julio", 
+            {
+              level: "Nivel I de Reiki",
+              date: "22 de Agosto",
               time: "14:00 a 20:00",
-              price: "$55.000",
-              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20I%20en%20Boedo%20el%204%20de%20julio."
-            },
-            { 
-              level: "Nivel II", 
-              date: "25 de Julio", 
-              time: "14:00 a 20:00",
-              price: "$55.000",
-              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20II%20en%20Boedo%20el%2025%20de%20julio."
+              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20el%20Nivel%20I%20de%20Reiki%20del%2022%20de%20agosto%20en%20Boedo."
             }
           ]}
         />
-        <LocationCard 
+
+        <LocationCard
           location="Lanús Oeste"
-          description="Zona Lanusita"
+          description="Zona Lanusita. Un encuentro intensivo, práctico y en grupo pequeño para comenzar tu camino de Reiki."
           dates={[
-            { 
-              level: "Nivel I", 
-              date: "18 de Julio", 
+            {
+              level: "Nivel I de Reiki",
+              date: "29 de Agosto",
               time: "14:00 a 20:00",
-              price: "$55.000",
-              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20inscribirme%20al%20Nivel%20I%20en%20Lan%C3%BAs%20Oeste%20el%2018%20de%20julio."
+              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20el%20Nivel%20I%20de%20Reiki%20del%2029%20de%20agosto%20en%20Lan%C3%BAs%20Oeste."
             }
           ]}
         />
+      </div>
+
+      <div className="mt-12 text-center">
+        <a
+          href="https://wa.me/5491149801624?text=Hola!%20Quisiera%20saber%20qu%C3%A9%20actividad%20de%20agosto%20es%20la%20m%C3%A1s%20adecuada%20para%20m%C3%AD."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center bg-dark text-light px-9 py-4 rounded-full font-bold hover:bg-sage transition-all shadow-lg"
+        >
+          <MessageCircle className="mr-2 w-5 h-5" />
+          No sé cuál elegir: quiero orientación
+        </a>
       </div>
     </div>
   </section>
@@ -418,8 +476,8 @@ const GiftModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
                     <Sparkles className="text-sage w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-serif text-dark">Regalá Bienestar</h3>
-                    <p className="text-xs text-sage font-bold uppercase tracking-widest">Nivel I de Reiki — $55.000</p>
+                    <h3 className="text-2xl font-serif text-dark">Un regalo con sentido</h3>
+                    <p className="text-xs text-sage font-bold uppercase tracking-widest">Voucher de Nivel I de Reiki</p>
                   </div>
                 </div>
 
@@ -614,59 +672,60 @@ const GiftModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
 };
 
 const GiftSection = ({ onOpenGiftModal }: { onOpenGiftModal: () => void }) => (
-  <section id="regala-bienestar" className="py-24 bg-beige/20 border-y border-dark/5">
+  <section id="regala-bienestar" className="py-24 bg-beige/25 border-y border-dark/5">
     <div className="max-w-7xl mx-auto px-6">
-      <div className="bg-light rounded-[3rem] overflow-hidden shadow-xl border border-dark/5 flex flex-col lg:flex-row">
-        <div className="lg:w-1/2 relative h-80 lg:h-auto">
-          <img 
-            src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?q=80&w=1000&auto=format&fit=crop" 
-            alt="Regalo Bienestar" 
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-sage/20 mix-blend-multiply"></div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-light/90 backdrop-blur-md p-8 rounded-full">
-              <Sparkles className="text-sage w-12 h-12" />
+      <div className="bg-light rounded-[3rem] overflow-hidden shadow-xl border border-dark/5 grid lg:grid-cols-2">
+        <div className="relative min-h-[430px] bg-[#d8d0bf] p-10 md:p-16 flex items-center justify-center overflow-hidden">
+          <div className="absolute -top-24 -right-20 w-72 h-72 rounded-full border border-sage/25" />
+          <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-sage/10" />
+          <div className="relative w-full max-w-md bg-[#f7f2e8] rounded-sm shadow-2xl px-10 py-14 border border-dark/10 rotate-[-2deg]">
+            <div className="flex justify-between items-start mb-16">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.3em] text-sage font-bold">Rincón Zen</p>
+                <p className="text-[9px] uppercase tracking-[0.22em] text-dark/40 mt-1">Spa para el alma</p>
+              </div>
+              <Sparkles className="w-5 h-5 text-sage" />
+            </div>
+            <p className="font-serif text-4xl text-dark leading-tight mb-5">Un regalo<br/><span className="italic text-sage">con sentido</span></p>
+            <p className="text-dark/60 text-sm leading-relaxed">Voucher personalizado para vivir la experiencia del Nivel I de Reiki Tradicional Japonés.</p>
+            <div className="mt-14 pt-5 border-t border-dark/10 flex justify-between text-[9px] uppercase tracking-[0.18em] text-dark/40">
+              <span>Experiencia</span>
+              <span>Sin vencimiento</span>
             </div>
           </div>
         </div>
-        <div className="lg:w-1/2 p-10 md:p-16 flex flex-col justify-center">
-          <span className="text-sage font-medium tracking-[0.3em] uppercase text-xs mb-4 block">Una experiencia única</span>
-          <h2 className="text-4xl md:text-5xl font-serif text-dark mb-6">Regalá Bienestar</h2>
+
+        <div className="p-10 md:p-16 flex flex-col justify-center">
+          <span className="text-sage font-medium tracking-[0.3em] uppercase text-xs mb-4 block">Una experiencia para recordar</span>
+          <h2 className="text-4xl md:text-5xl font-serif text-dark mb-6">Un regalo con sentido</h2>
           <div className="space-y-6 text-dark/80 text-lg leading-relaxed mb-10">
             <p className="italic font-serif text-xl border-l-4 border-sage/30 pl-6 py-2">
-              "Hay regalos que permanecen en el alma para siempre."
+              “Hay regalos que no ocupan espacio, pero permanecen.”
             </p>
             <p>
-              ¿Querés sorprender a alguien especial? Ahora podés obsequiar la oportunidad de transitar el camino del Reiki. 
-              Creamos un voucher personalizado que te enviaremos para que puedas entregárselo al destinatario.
+              Podés obsequiar el Nivel I de Reiki con un voucher personalizado. Coordinamos todo por WhatsApp y te enviamos la pieza lista para regalar.
             </p>
             <ul className="space-y-3 text-base">
-              <li className="flex items-center gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-sage"></div>
-                Sin fecha de vencimiento.
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-sage"></div>
-                Cursos brindados en nuestra sede de Boedo.
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-sage"></div>
-                Voucher para Nivel I de Reiki: <strong className="text-dark">$55.000</strong>
-              </li>
+              <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 rounded-full bg-sage" /> Sin fecha de vencimiento.</li>
+              <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 rounded-full bg-sage" /> Válido para los cursos brindados en Boedo.</li>
+              <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 rounded-full bg-sage" /> Voucher personalizado con dedicatoria.</li>
             </ul>
           </div>
-          <button 
+          <button
             onClick={onOpenGiftModal}
             className="inline-flex items-center justify-center bg-sage text-light px-10 py-5 rounded-2xl font-bold hover:bg-[#7a846c] hover:shadow-2xl hover:-translate-y-1 transition-all shadow-lg group"
           >
-            Comprar Voucher de Regalo
+            Crear voucher de regalo
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
-          <p className="text-xs text-dark/40 mt-6 text-center lg:text-left">
-            Al completar tus datos, te enviaremos la información de pago para coordinar la entrega.
-          </p>
+          <a
+            href="https://wa.me/5491149801624?text=Hola!%20Quisiera%20consultar%20por%20el%20voucher%20para%20regalar%20el%20Nivel%20I%20de%20Reiki."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-5 text-center lg:text-left text-sm font-bold text-sage hover:text-dark transition-colors"
+          >
+            Prefiero consultar primero por WhatsApp →
+          </a>
         </div>
       </div>
     </div>
@@ -714,7 +773,10 @@ El uso de este sitio implica la aceptación de estos términos.`;
               <a href="https://www.instagram.com/rinconzen_reiki/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-light/20 flex items-center justify-center hover:bg-sage hover:border-sage hover:text-light transition-all">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="mailto:info@rinconzen.com.ar" className="w-10 h-10 rounded-full border border-light/20 flex items-center justify-center hover:bg-sage hover:border-sage hover:text-light transition-all">
+              <a href="https://wa.me/5491149801624?text=Hola!%20Quisiera%20consultar%20por%20Rinc%C3%B3n%20Zen." target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-light/20 flex items-center justify-center hover:bg-sage hover:border-sage hover:text-light transition-all" aria-label="WhatsApp">
+                <MessageCircle className="w-5 h-5" />
+              </a>
+              <a href="mailto:info@rinconzen.com.ar" className="w-10 h-10 rounded-full border border-light/20 flex items-center justify-center hover:bg-sage hover:border-sage hover:text-light transition-all" aria-label="Correo electrónico">
                 <Mail className="w-5 h-5" />
               </a>
             </div>
@@ -780,12 +842,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen font-sans selection:bg-sage/30 selection:text-dark">
-      <Navbar onOpenGiftModal={() => setIsGiftModalOpen(true)} />
+      <Navbar />
       <main>
         <Hero />
+        <CalendarSection />
         <LearnSection />
         <BenefitsSection />
-        <CalendarSection />
         <GiftSection onOpenGiftModal={() => setIsGiftModalOpen(true)} />
         <WhyTeachSection />
         <section className="py-24 bg-sage text-light overflow-hidden relative">
@@ -795,10 +857,10 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
             <h2 className="text-4xl md:text-5xl font-serif mb-8">¿Tenés dudas? Consultanos</h2>
             <p className="text-light/90 text-lg mb-10 max-w-2xl mx-auto">
-              Escribinos por WhatsApp para recibir asesoramiento personalizado sobre los cursos de Reiki Tradicional Japonés.
+              Escribinos por WhatsApp para consultar vacantes, formas de reserva o cuál de las propuestas de agosto puede acompañarte mejor.
             </p>
             <a 
-              href="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20consultar%20por%20los%20cursos%20de%20Reiki." 
+              href="https://wa.me/5491149801624?text=Hola!%20Quisiera%20consultar%20por%20las%20actividades%20de%20agosto%20de%20Rinc%C3%B3n%20Zen." 
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-light text-dark px-10 py-4 rounded-full font-bold hover:bg-beige transition-all shadow-xl"
