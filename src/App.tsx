@@ -175,13 +175,13 @@ const EventCard = ({ day, title, time, location, description, price, image, link
   <motion.article
     whileHover={{ y: -6 }}
     transition={{ duration: 0.25 }}
-    className="bg-light border border-dark/10 shadow-sm overflow-hidden flex flex-col h-full"
+    className="group bg-light border border-dark/10 shadow-sm overflow-hidden flex flex-col h-full hover:shadow-xl transition-shadow duration-300"
   >
-    <div className="relative h-56 overflow-hidden">
+    <div className="relative aspect-[4/3] overflow-hidden bg-beige/30">
       <img
         src={image}
         alt={title}
-        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+        className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
         referrerPolicy="no-referrer"
       />
       <div className="absolute top-0 left-0 bg-sage text-light px-5 py-4 text-center min-w-[76px]">
@@ -270,8 +270,8 @@ const LearnSection = () => (
         <div className="relative">
           <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
             <img 
-              src="https://images.unsplash.com/photo-1707858565719-f94857adb9cc?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-              alt="Sun and Hands" 
+              src="/Reiki_I.png" 
+              alt="Reiki Tradicional Japonés Nivel I" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />
@@ -340,7 +340,7 @@ const CalendarSection = () => (
           price="$50.000"
           promo="Promoción abonando hasta el 6/8: $40.000"
           extra="Se entrega e-book y cuadernillo interactivo para continuar explorando en casa."
-          image="https://images.unsplash.com/photo-1601556428518-144e9d6f5ad9?q=85&w=1200&auto=format&fit=crop"
+          image="/encuentro_oracular.png"
           link="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20reservar%20mi%20lugar%20para%20el%20Encuentro%20Oracular%20del%208%20de%20agosto%20en%20Caballito."
         />
 
@@ -351,7 +351,7 @@ const CalendarSection = () => (
           location="Boedo (CABA)"
           description="El inicio de un camino de práctica y transformación personal desde las raíces del Reiki Tradicional Japonés."
           price="$55.000"
-          image="https://images.unsplash.com/photo-1545048702-79362596cdc9?q=85&w=1200&auto=format&fit=crop"
+          image="/Reiki_I.png"
           link="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20reservar%20mi%20lugar%20para%20el%20Nivel%20I%20de%20Reiki%20del%2022%20de%20agosto%20en%20Boedo."
         />
 
@@ -362,7 +362,7 @@ const CalendarSection = () => (
           location="Lanús Oeste"
           description="Una formación intensiva, práctica y cercana para comenzar a integrar Reiki en tu vida cotidiana."
           price="$55.000"
-          image="https://images.unsplash.com/photo-1611071536600-51d71142b25e?q=85&w=1200&auto=format&fit=crop"
+          image="/Reiki_I.png"
           link="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20reservar%20mi%20lugar%20para%20el%20Nivel%20I%20de%20Reiki%20del%2029%20de%20agosto%20en%20Lan%C3%BAs%20Oeste."
         />
       </div>
@@ -679,52 +679,68 @@ const GiftModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
 };
 
 const GiftSection = ({ onOpenGiftModal }: { onOpenGiftModal: () => void }) => (
-  <section id="regala-bienestar" className="bg-[#f4ede2] border-y border-dark/5">
-    <div className="max-w-7xl mx-auto grid lg:grid-cols-2 min-h-[620px]">
-      <div className="relative min-h-[460px] lg:min-h-full overflow-hidden bg-[#ddd1c0]">
-        <img
-          src="/voucher-rincon-zen.png"
-          alt="Voucher de regalo de Rincón Zen"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#f4ede2]/20" />
-      </div>
-
-      <div className="p-10 md:p-16 lg:p-20 flex flex-col justify-center bg-[#f8f4ed]">
-        <span className="text-sage font-medium tracking-[0.3em] uppercase text-xs mb-4 block">Una experiencia para recordar</span>
-        <h2 className="text-4xl md:text-6xl font-serif text-dark mb-6">Un regalo con sentido</h2>
-        <div className="space-y-6 text-dark/80 text-lg leading-relaxed mb-10">
-          <p className="italic font-serif text-2xl border-l-4 border-sage/30 pl-6 py-2">
-            “Hay regalos que no ocupan espacio, pero permanecen.”
-          </p>
-          <p>
-            Podés obsequiar el Nivel I de Reiki con un voucher personalizado por $55.000. Coordinamos todo por WhatsApp y te enviamos la pieza lista para regalar.
-          </p>
-          <ul className="space-y-4 text-base">
-            <li className="flex items-center gap-3"><Sparkles className="w-4 h-4 text-sage" /> Sin fecha de vencimiento.</li>
-            <li className="flex items-center gap-3"><MapPin className="w-4 h-4 text-sage" /> Válido para los cursos brindados en Boedo.</li>
-            <li className="flex items-center gap-3"><Mail className="w-4 h-4 text-sage" /> Voucher personalizado con dedicatoria.</li>
-            <li className="flex items-center gap-3"><Sparkles className="w-4 h-4 text-sage" /> Valor del voucher: <strong className="text-dark">$55.000</strong>.</li>
-          </ul>
-        </div>
-
-        <button
-          onClick={onOpenGiftModal}
-          className="inline-flex items-center justify-center bg-sage text-light px-10 py-5 rounded-xl font-bold hover:bg-[#7a846c] hover:shadow-xl hover:-translate-y-0.5 transition-all shadow-md group"
+  <section id="regala-bienestar" className="py-24 bg-[#f4ede2] border-y border-dark/5 overflow-hidden">
+    <div className="max-w-6xl mx-auto px-6">
+      <div className="grid lg:grid-cols-[390px_1fr] gap-12 lg:gap-20 items-center">
+        <motion.div
+          initial={{ opacity: 0, x: -18 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.7 }}
+          className="relative flex justify-center lg:justify-end"
         >
-          <MessageCircle className="mr-2 w-5 h-5" />
-          Crear voucher de regalo
-          <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-        </button>
+          <div className="absolute w-72 h-72 rounded-full border border-sage/15 -top-10 -left-8" />
+          <div className="absolute w-40 h-40 rounded-full bg-sage/10 -bottom-7 right-0 blur-2xl" />
+          <img
+            src="/voucher-rincon-zen.png"
+            alt="Voucher de regalo de Rincón Zen"
+            className="relative z-10 w-full max-w-[320px] md:max-w-[350px] rounded-[1.5rem] shadow-2xl rotate-[-3deg] hover:rotate-0 hover:scale-[1.025] transition-all duration-500 object-cover"
+          />
+        </motion.div>
 
-        <a
-          href="https://wa.me/5491149801624?text=Hola!%20Quisiera%20consultar%20por%20el%20voucher%20para%20regalar%20el%20Nivel%20I%20de%20Reiki."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-5 text-center lg:text-left text-sm font-bold text-sage hover:text-dark transition-colors"
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
         >
-          Prefiero consultar primero por WhatsApp →
-        </a>
+          <span className="text-sage font-medium tracking-[0.3em] uppercase text-xs mb-4 block">Una experiencia para recordar</span>
+          <h2 className="text-4xl md:text-6xl font-serif text-dark mb-6">Un regalo con sentido</h2>
+          <div className="space-y-6 text-dark/80 text-lg leading-relaxed mb-9">
+            <p className="italic font-serif text-2xl border-l-4 border-sage/30 pl-6 py-2">
+              “Hay regalos que no ocupan espacio, pero permanecen.”
+            </p>
+            <p>
+              Podés obsequiar el Nivel I de Reiki con un voucher personalizado. Coordinamos todo por WhatsApp y te enviamos la pieza lista para regalar.
+            </p>
+            <ul className="grid sm:grid-cols-2 gap-x-7 gap-y-4 text-base">
+              <li className="flex items-start gap-3"><Sparkles className="w-4 h-4 text-sage mt-1" /> Sin fecha de vencimiento.</li>
+              <li className="flex items-start gap-3"><MapPin className="w-4 h-4 text-sage mt-1" /> Válido para cursos en Boedo.</li>
+              <li className="flex items-start gap-3"><Mail className="w-4 h-4 text-sage mt-1" /> Incluye dedicatoria personalizada.</li>
+              <li className="flex items-start gap-3"><Sparkles className="w-4 h-4 text-sage mt-1" /> Valor: <strong className="text-dark">$55.000</strong>.</li>
+            </ul>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={onOpenGiftModal}
+              className="inline-flex items-center justify-center bg-sage text-light px-8 py-4 rounded-full font-bold hover:bg-[#7a846c] hover:shadow-xl hover:-translate-y-0.5 transition-all shadow-md group"
+            >
+              <MessageCircle className="mr-2 w-5 h-5" />
+              Crear voucher
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+
+            <a
+              href="https://wa.me/5491149801624?text=Hola!%20Quisiera%20consultar%20por%20el%20voucher%20para%20regalar%20el%20Nivel%20I%20de%20Reiki."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center border border-sage/35 text-sage px-8 py-4 rounded-full font-bold hover:bg-light transition-all"
+            >
+              Consultar por WhatsApp
+            </a>
+          </div>
+        </motion.div>
       </div>
     </div>
   </section>
