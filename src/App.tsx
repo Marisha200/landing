@@ -351,7 +351,7 @@ const CalendarSection = () => (
           location="Boedo (CABA)"
           description="El inicio de un camino de práctica y transformación personal desde las raíces del Reiki Tradicional Japonés."
           price="$55.000"
-          image="/Reiki_1.png"
+          image="/Reiki-1.png"
           link="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20reservar%20mi%20lugar%20para%20el%20Nivel%20I%20de%20Reiki%20del%2022%20de%20agosto%20en%20Boedo."
         />
 
@@ -362,7 +362,7 @@ const CalendarSection = () => (
           location="Lanús Oeste"
           description="Una formación intensiva, práctica y cercana para comenzar a integrar Reiki en tu vida cotidiana."
           price="$55.000"
-          image="/Reiki_1.png"
+          image="/Reiki-1.png"
           link="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20reservar%20mi%20lugar%20para%20el%20Nivel%20I%20de%20Reiki%20del%2029%20de%20agosto%20en%20Lan%C3%BAs%20Oeste."
         />
       </div>
