@@ -177,11 +177,11 @@ const EventCard = ({ day, title, time, location, description, price, image, link
     transition={{ duration: 0.25 }}
     className="group bg-light border border-dark/10 shadow-sm overflow-hidden flex flex-col h-full hover:shadow-xl transition-shadow duration-300"
   >
-    <div className="relative aspect-[4/3] overflow-hidden bg-beige/30">
+    <div className="relative aspect-[5/4] md:aspect-[4/3] overflow-hidden bg-beige/30">
       <img
         src={image}
         alt={title}
-        className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
+        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
         referrerPolicy="no-referrer"
       />
       <div className="absolute top-0 left-0 bg-sage text-light px-5 py-4 text-center min-w-[76px]">
