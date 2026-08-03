@@ -270,7 +270,7 @@ const LearnSection = () => (
         <div className="relative">
           <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
             <img 
-              src="/Reiki_I.png" 
+              src="/Reiki-I.png" 
               alt="Reiki Tradicional Japonés Nivel I" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
