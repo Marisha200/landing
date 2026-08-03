@@ -158,59 +158,73 @@ const WhyTeachSection = () => (
   </section>
 );
 
-const LocationCard = ({ dates, location, description }: any) => (
-  <motion.div 
-    whileHover={{ y: -5 }}
-    className="bg-beige/40 p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-dark/5 flex flex-col h-full"
+type EventCardProps = {
+  day: string;
+  title: string;
+  time: string;
+  location: string;
+  description: string;
+  price: string;
+  image: string;
+  link: string;
+  promo?: string;
+  extra?: string;
+};
+
+const EventCard = ({ day, title, time, location, description, price, image, link, promo, extra }: EventCardProps) => (
+  <motion.article
+    whileHover={{ y: -6 }}
+    transition={{ duration: 0.25 }}
+    className="bg-light border border-dark/10 shadow-sm overflow-hidden flex flex-col h-full"
   >
-    <div className="flex items-center gap-4 mb-8">
-      <div className="w-12 h-12 bg-light rounded-2xl flex items-center justify-center shadow-sm">
-        <MapPin className="text-sage w-6 h-6" />
+    <div className="relative h-56 overflow-hidden">
+      <img
+        src={image}
+        alt={title}
+        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+        referrerPolicy="no-referrer"
+      />
+      <div className="absolute top-0 left-0 bg-sage text-light px-5 py-4 text-center min-w-[76px]">
+        <span className="block text-[10px] tracking-[0.22em] uppercase">Vie</span>
+        <span className="block text-4xl font-serif leading-none my-1">{day}</span>
+        <span className="block text-[10px] tracking-[0.22em] uppercase">Ago</span>
       </div>
-      <h3 className="text-2xl md:text-3xl font-serif text-dark tracking-tight">{location}</h3>
     </div>
-    {description && <p className="text-dark/60 text-sm mb-8 italic leading-relaxed">{description}</p>}
-    <div className="space-y-6 flex-grow">
-      {dates.map((d: any, i: number) => (
-        <div 
-          key={i} 
-          className="relative p-6 rounded-[2rem] border bg-light border-sage/20 shadow-md ring-1 ring-sage/5 transition-all duration-300"
-        >
-          {i === 0 && (
-            <div className="absolute -top-3 left-6 bg-sage text-light text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-[0.2em] shadow-sm">
-              Próxima fecha
-            </div>
-          )}
-          <div className="flex flex-col gap-5">
-            <div>
-              <div className="flex justify-between items-start mb-2">
-                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-sage">
-                  {d.level}
-                </p>
-                {d.price && <p className="text-xs font-bold text-dark/30 tracking-tight">{d.price}</p>}
-              </div>
-              <div className="flex flex-col gap-1">
-                <p className="text-xl font-medium tracking-tight text-dark">
-                  {d.date}
-                </p>
-                <p className="text-xs text-dark/60">
-                  {d.time} hs
-                </p>
-              </div>
-            </div>
-            <a 
-              href={d.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center text-xs font-bold py-3.5 px-6 rounded-2xl border bg-sage text-light border-sage shadow-sm hover:shadow-lg hover:bg-[#7a846c] hover:-translate-y-0.5 transition-all duration-300"
-            >
-              Consultar por {d.level}
-            </a>
-          </div>
+
+    <div className="p-7 flex flex-col flex-grow">
+      <h3 className="text-3xl font-serif text-dark mb-3">{title}</h3>
+      <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-dark/60 mb-6">
+        <span className="flex items-center gap-2"><Sparkles className="w-3.5 h-3.5 text-sage" /> {time}</span>
+        <span className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5 text-sage" /> {location}</span>
+      </div>
+
+      <p className="text-dark/70 leading-relaxed mb-7">{description}</p>
+
+      <div className="mt-auto space-y-4">
+        <div className="bg-beige/55 border border-dark/5 px-5 py-4">
+          <p className="text-sm text-dark/70">Valor: <strong className="text-dark text-base">{price}</strong></p>
+          {promo && <p className="text-sm text-[#9a6a29] mt-1">{promo}</p>}
         </div>
-      ))}
+
+        {extra && (
+          <div className="flex items-start gap-3 border border-dark/10 px-5 py-4 text-sm text-dark/70">
+            <Sparkles className="w-4 h-4 text-[#b4863e] mt-0.5 flex-shrink-0" />
+            <span>{extra}</span>
+          </div>
+        )}
+
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex w-full items-center justify-center bg-sage text-light px-6 py-4 text-xs font-bold uppercase tracking-[0.08em] hover:bg-[#7a846c] transition-all"
+        >
+          <MessageCircle className="w-4 h-4 mr-2" />
+          Reservar por WhatsApp
+        </a>
+      </div>
     </div>
-  </motion.div>
+  </motion.article>
 );
 
 const LearnSection = () => (
@@ -308,68 +322,61 @@ const BenefitsSection = () => (
 );
 
 const CalendarSection = () => (
-  <section id="calendario" className="py-24 bg-light">
+  <section id="calendario" className="py-24 bg-[#fbf8f2]">
     <div className="max-w-7xl mx-auto px-6">
-      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
-        <div className="max-w-3xl">
-          <span className="text-sage font-medium tracking-[0.24em] uppercase text-xs mb-4 block">Encuentros de agosto</span>
-          <h2 className="text-5xl md:text-6xl font-serif text-dark mb-5 leading-tight">Elegí tu próxima experiencia</h2>
-        </div>
-        <p className="text-dark/65 max-w-md leading-relaxed">
-          Trabajamos con grupos muy reducidos para sostener un espacio cercano, personalizado y con verdadero tiempo para practicar.
-        </p>
+      <div className="text-center max-w-3xl mx-auto mb-14">
+        <span className="text-sage font-medium tracking-[0.26em] uppercase text-xs mb-4 block">Calendario</span>
+        <h2 className="text-5xl md:text-6xl font-serif text-dark mb-5">Encuentros de Agosto</h2>
+        <div className="w-10 h-px bg-sage mx-auto" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-7 w-full">
-        <LocationCard
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+        <EventCard
+          day="08"
+          title="Encuentro Oracular"
+          time="15 a 20 hs"
           location="Caballito"
-          description="Una tarde vivencial para abrir los oráculos, escucharte y volver a mirar tu propio mapa con otros ojos."
-          dates={[
-            {
-              level: "Encuentro Oracular",
-              date: "8 de Agosto",
-              time: "15:00 a 20:00",
-              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20el%20Encuentro%20Oracular%20del%208%20de%20agosto%20en%20Caballito."
-            }
-          ]}
+          description="Una tarde para abrir los oráculos, escucharte y descubrir nuevas formas de leer tu propio camino a través del Tarot y la Numerología."
+          price="$50.000"
+          promo="Promoción abonando hasta el 6/8: $40.000"
+          extra="Se entrega e-book y cuadernillo interactivo para continuar explorando en casa."
+          image="https://images.unsplash.com/photo-1601556428518-144e9d6f5ad9?q=85&w=1200&auto=format&fit=crop"
+          link="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20reservar%20mi%20lugar%20para%20el%20Encuentro%20Oracular%20del%208%20de%20agosto%20en%20Caballito."
         />
 
-        <LocationCard
+        <EventCard
+          day="22"
+          title="Reiki Nivel I"
+          time="14 a 20 hs"
           location="Boedo (CABA)"
-          description="Formación presencial de Reiki Tradicional Japonés, con material completo, práctica y acompañamiento."
-          dates={[
-            {
-              level: "Nivel I de Reiki",
-              date: "22 de Agosto",
-              time: "14:00 a 20:00",
-              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20el%20Nivel%20I%20de%20Reiki%20del%2022%20de%20agosto%20en%20Boedo."
-            }
-          ]}
+          description="El inicio de un camino de práctica y transformación personal desde las raíces del Reiki Tradicional Japonés."
+          price="$55.000"
+          image="https://images.unsplash.com/photo-1545048702-79362596cdc9?q=85&w=1200&auto=format&fit=crop"
+          link="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20reservar%20mi%20lugar%20para%20el%20Nivel%20I%20de%20Reiki%20del%2022%20de%20agosto%20en%20Boedo."
         />
 
-        <LocationCard
+        <EventCard
+          day="29"
+          title="Reiki Nivel I"
+          time="14 a 20 hs"
           location="Lanús Oeste"
-          description="Zona Lanusita. Un encuentro intensivo, práctico y en grupo pequeño para comenzar tu camino de Reiki."
-          dates={[
-            {
-              level: "Nivel I de Reiki",
-              date: "29 de Agosto",
-              time: "14:00 a 20:00",
-              link: "https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20el%20Nivel%20I%20de%20Reiki%20del%2029%20de%20agosto%20en%20Lan%C3%BAs%20Oeste."
-            }
-          ]}
+          description="Una formación intensiva, práctica y cercana para comenzar a integrar Reiki en tu vida cotidiana."
+          price="$55.000"
+          image="https://images.unsplash.com/photo-1611071536600-51d71142b25e?q=85&w=1200&auto=format&fit=crop"
+          link="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20reservar%20mi%20lugar%20para%20el%20Nivel%20I%20de%20Reiki%20del%2029%20de%20agosto%20en%20Lan%C3%BAs%20Oeste."
         />
       </div>
 
-      <div className="mt-12 text-center">
+      <div className="mt-10 text-center">
         <a
-          href="https://wa.me/5491149801624?text=Hola!%20Quisiera%20saber%20qu%C3%A9%20actividad%20de%20agosto%20es%20la%20m%C3%A1s%20adecuada%20para%20m%C3%AD."
+          href="https://wa.me/5491149801624?text=Hola!%20Quisiera%20hacer%20una%20consulta%20sobre%20las%20actividades%20de%20agosto%20de%20Rinc%C3%B3n%20Zen."
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center bg-dark text-light px-9 py-4 rounded-full font-bold hover:bg-sage transition-all shadow-lg"
+          className="inline-flex items-center text-[#9a6a29] font-medium hover:text-dark transition-colors"
         >
-          <MessageCircle className="mr-2 w-5 h-5" />
-          No sé cuál elegir: quiero orientación
+          <MessageCircle className="w-4 h-4 mr-2" />
+          Consultas generales por WhatsApp
+          <ArrowRight className="w-4 h-4 ml-3" />
         </a>
       </div>
     </div>
@@ -477,7 +484,7 @@ const GiftModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
                   </div>
                   <div>
                     <h3 className="text-2xl font-serif text-dark">Un regalo con sentido</h3>
-                    <p className="text-xs text-sage font-bold uppercase tracking-widest">Voucher de Nivel I de Reiki</p>
+                    <p className="text-xs text-sage font-bold uppercase tracking-widest">Voucher de Nivel I de Reiki · $55.000</p>
                   </div>
                 </div>
 
@@ -643,7 +650,7 @@ const GiftModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
                   <a 
                     href={`https://api.whatsapp.com/send?phone=5491149801624&text=${encodeURIComponent(
                       `¡Hola! Soy ${formData.buyerName}. ` +
-                      `Compré este voucher de Reiki Nivel I para regalarle a ${formData.recipientName}. \n\n` +
+                      `Compré este voucher de Reiki Nivel I por $55.000 para regalarle a ${formData.recipientName}. \n\n` +
                       `Dedicatoria: \n` +
                       `"${formData.message}" \n\n` +
                       `Adjunto también el comprobante de transferencia para confirmar la reserva del voucher.`
@@ -672,61 +679,52 @@ const GiftModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
 };
 
 const GiftSection = ({ onOpenGiftModal }: { onOpenGiftModal: () => void }) => (
-  <section id="regala-bienestar" className="py-24 bg-beige/25 border-y border-dark/5">
-    <div className="max-w-7xl mx-auto px-6">
-      <div className="bg-light rounded-[3rem] overflow-hidden shadow-xl border border-dark/5 grid lg:grid-cols-2">
-        <div className="relative min-h-[430px] bg-[#d8d0bf] p-10 md:p-16 flex items-center justify-center overflow-hidden">
-          <div className="absolute -top-24 -right-20 w-72 h-72 rounded-full border border-sage/25" />
-          <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-sage/10" />
-          <div className="relative w-full max-w-md bg-[#f7f2e8] rounded-sm shadow-2xl px-10 py-14 border border-dark/10 rotate-[-2deg]">
-            <div className="flex justify-between items-start mb-16">
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.3em] text-sage font-bold">Rincón Zen</p>
-                <p className="text-[9px] uppercase tracking-[0.22em] text-dark/40 mt-1">Spa para el alma</p>
-              </div>
-              <Sparkles className="w-5 h-5 text-sage" />
-            </div>
-            <p className="font-serif text-4xl text-dark leading-tight mb-5">Un regalo<br/><span className="italic text-sage">con sentido</span></p>
-            <p className="text-dark/60 text-sm leading-relaxed">Voucher personalizado para vivir la experiencia del Nivel I de Reiki Tradicional Japonés.</p>
-            <div className="mt-14 pt-5 border-t border-dark/10 flex justify-between text-[9px] uppercase tracking-[0.18em] text-dark/40">
-              <span>Experiencia</span>
-              <span>Sin vencimiento</span>
-            </div>
-          </div>
+  <section id="regala-bienestar" className="bg-[#f4ede2] border-y border-dark/5">
+    <div className="max-w-7xl mx-auto grid lg:grid-cols-2 min-h-[620px]">
+      <div className="relative min-h-[460px] lg:min-h-full overflow-hidden bg-[#ddd1c0]">
+        <img
+          src="/voucher-rincon-zen.png"
+          alt="Voucher de regalo de Rincón Zen"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#f4ede2]/20" />
+      </div>
+
+      <div className="p-10 md:p-16 lg:p-20 flex flex-col justify-center bg-[#f8f4ed]">
+        <span className="text-sage font-medium tracking-[0.3em] uppercase text-xs mb-4 block">Una experiencia para recordar</span>
+        <h2 className="text-4xl md:text-6xl font-serif text-dark mb-6">Un regalo con sentido</h2>
+        <div className="space-y-6 text-dark/80 text-lg leading-relaxed mb-10">
+          <p className="italic font-serif text-2xl border-l-4 border-sage/30 pl-6 py-2">
+            “Hay regalos que no ocupan espacio, pero permanecen.”
+          </p>
+          <p>
+            Podés obsequiar el Nivel I de Reiki con un voucher personalizado por $55.000. Coordinamos todo por WhatsApp y te enviamos la pieza lista para regalar.
+          </p>
+          <ul className="space-y-4 text-base">
+            <li className="flex items-center gap-3"><Sparkles className="w-4 h-4 text-sage" /> Sin fecha de vencimiento.</li>
+            <li className="flex items-center gap-3"><MapPin className="w-4 h-4 text-sage" /> Válido para los cursos brindados en Boedo.</li>
+            <li className="flex items-center gap-3"><Mail className="w-4 h-4 text-sage" /> Voucher personalizado con dedicatoria.</li>
+            <li className="flex items-center gap-3"><Sparkles className="w-4 h-4 text-sage" /> Valor del voucher: <strong className="text-dark">$55.000</strong>.</li>
+          </ul>
         </div>
 
-        <div className="p-10 md:p-16 flex flex-col justify-center">
-          <span className="text-sage font-medium tracking-[0.3em] uppercase text-xs mb-4 block">Una experiencia para recordar</span>
-          <h2 className="text-4xl md:text-5xl font-serif text-dark mb-6">Un regalo con sentido</h2>
-          <div className="space-y-6 text-dark/80 text-lg leading-relaxed mb-10">
-            <p className="italic font-serif text-xl border-l-4 border-sage/30 pl-6 py-2">
-              “Hay regalos que no ocupan espacio, pero permanecen.”
-            </p>
-            <p>
-              Podés obsequiar el Nivel I de Reiki con un voucher personalizado. Coordinamos todo por WhatsApp y te enviamos la pieza lista para regalar.
-            </p>
-            <ul className="space-y-3 text-base">
-              <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 rounded-full bg-sage" /> Sin fecha de vencimiento.</li>
-              <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 rounded-full bg-sage" /> Válido para los cursos brindados en Boedo.</li>
-              <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 rounded-full bg-sage" /> Voucher personalizado con dedicatoria.</li>
-            </ul>
-          </div>
-          <button
-            onClick={onOpenGiftModal}
-            className="inline-flex items-center justify-center bg-sage text-light px-10 py-5 rounded-2xl font-bold hover:bg-[#7a846c] hover:shadow-2xl hover:-translate-y-1 transition-all shadow-lg group"
-          >
-            Crear voucher de regalo
-            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
-          <a
-            href="https://wa.me/5491149801624?text=Hola!%20Quisiera%20consultar%20por%20el%20voucher%20para%20regalar%20el%20Nivel%20I%20de%20Reiki."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-5 text-center lg:text-left text-sm font-bold text-sage hover:text-dark transition-colors"
-          >
-            Prefiero consultar primero por WhatsApp →
-          </a>
-        </div>
+        <button
+          onClick={onOpenGiftModal}
+          className="inline-flex items-center justify-center bg-sage text-light px-10 py-5 rounded-xl font-bold hover:bg-[#7a846c] hover:shadow-xl hover:-translate-y-0.5 transition-all shadow-md group"
+        >
+          <MessageCircle className="mr-2 w-5 h-5" />
+          Crear voucher de regalo
+          <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </button>
+
+        <a
+          href="https://wa.me/5491149801624?text=Hola!%20Quisiera%20consultar%20por%20el%20voucher%20para%20regalar%20el%20Nivel%20I%20de%20Reiki."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-5 text-center lg:text-left text-sm font-bold text-sage hover:text-dark transition-colors"
+        >
+          Prefiero consultar primero por WhatsApp →
+        </a>
       </div>
     </div>
   </section>
