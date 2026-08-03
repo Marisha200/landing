@@ -340,7 +340,7 @@ const CalendarSection = () => (
           price="$50.000"
           promo="Promoción abonando hasta el 6/8: $40.000"
           extra="Se entrega e-book y cuadernillo interactivo para continuar explorando en casa."
-          image="/encuentro_oracular.png"
+          image="/oraculos1.png"
           link="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20reservar%20mi%20lugar%20para%20el%20Encuentro%20Oracular%20del%208%20de%20agosto%20en%20Caballito."
         />
 
