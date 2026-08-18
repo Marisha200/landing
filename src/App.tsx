@@ -160,6 +160,7 @@ const WhyTeachSection = () => (
 
 type EventCardProps = {
   day: string;
+  month?: string;
   title: string;
   time: string;
   location: string;
@@ -171,7 +172,7 @@ type EventCardProps = {
   extra?: string;
 };
 
-const EventCard = ({ day, title, time, location, description, price, image, link, promo, extra }: EventCardProps) => (
+const EventCard = ({ day, month = "Ago", title, time, location, description, price, image, link, promo, extra }: EventCardProps) => (
   <motion.article
     whileHover={{ y: -6 }}
     transition={{ duration: 0.25 }}
@@ -185,9 +186,9 @@ const EventCard = ({ day, title, time, location, description, price, image, link
         referrerPolicy="no-referrer"
       />
       <div className="absolute top-0 left-0 bg-sage text-light px-5 py-4 text-center min-w-[76px]">
-        <span className="block text-[10px] tracking-[0.22em] uppercase">Vie</span>
+        <span className="block text-[10px] tracking-[0.22em] uppercase">Sab</span>
         <span className="block text-4xl font-serif leading-none my-1">{day}</span>
-        <span className="block text-[10px] tracking-[0.22em] uppercase">Ago</span>
+        <span className="block text-[10px] tracking-[0.22em] uppercase">{month}</span>
       </div>
     </div>
 
@@ -332,16 +333,15 @@ const CalendarSection = () => (
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
         <EventCard
-          day="08"
+          day="29"
           title="Encuentro Oracular"
           time="15 a 20 hs"
           location="Caballito"
           description="Una tarde para abrir los oráculos, escucharte y descubrir nuevas formas de leer tu propio camino a través del Tarot y la Numerología."
           price="$50.000"
-          promo="Promoción abonando hasta el 6/8: $40.000"
           extra="Se entrega e-book y cuadernillo interactivo para continuar explorando en casa."
           image="/oraculos1.png"
-          link="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20reservar%20mi%20lugar%20para%20el%20Encuentro%20Oracular%20del%208%20de%20agosto%20en%20Caballito."
+          link="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20reservar%20mi%20lugar%20para%20el%20Encuentro%20Oracular%20del%2029%20de%20agosto%20en%20Caballito."
         />
 
         <EventCard
@@ -356,14 +356,15 @@ const CalendarSection = () => (
         />
 
         <EventCard
-          day="29"
-          title="Reiki Nivel I"
-          time="14 a 20 hs"
-          location="Lanús Oeste"
-          description="Una formación intensiva, práctica y cercana para comenzar a integrar Reiki en tu vida cotidiana."
-          price="$55.000"
+          day="05"
+          month="Sep"
+          title="Encuentro de Numerología"
+          time="15 a 20 hs"
+          location="A confirmar"
+          description="Un encuentro dedicado a la Numerología. Próximamente vamos a sumar todos los detalles de la propuesta."
+          price="$60.000"
           image="/Reiki-imagen.png"
-          link="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20reservar%20mi%20lugar%20para%20el%20Nivel%20I%20de%20Reiki%20del%2029%20de%20agosto%20en%20Lan%C3%BAs%20Oeste."
+          link="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20recibir%20informaci%C3%B3n%20sobre%20el%20Encuentro%20de%20Numerolog%C3%ADa%20del%205%20de%20septiembre."
         />
       </div>
 
