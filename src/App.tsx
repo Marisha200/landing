@@ -327,7 +327,7 @@ const CalendarSection = () => (
     <div className="max-w-7xl mx-auto px-6">
       <div className="text-center max-w-3xl mx-auto mb-14">
         <span className="text-sage font-medium tracking-[0.26em] uppercase text-xs mb-4 block">Calendario</span>
-        <h2 className="text-5xl md:text-6xl font-serif text-dark mb-5">Encuentros de Agosto</h2>
+        <h2 className="text-5xl md:text-6xl font-serif text-dark mb-5">Encuentros de Agosto y Septiembre</h2>
         <div className="w-10 h-px bg-sage mx-auto" />
       </div>
 
