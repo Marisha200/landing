@@ -332,6 +332,18 @@ const CalendarSection = () => (
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+        
+        <EventCard
+          day="22"
+          title="Reiki Nivel I"
+          time="14 a 20 hs"
+          location="Boedo (CABA)"
+          description="El inicio de un camino de práctica y transformación personal desde las raíces del Reiki Tradicional Japonés."
+          price="$55.000"
+          image="/Reiki-1.png"
+          link="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20reservar%20mi%20lugar%20para%20el%20Nivel%20I%20de%20Reiki%20del%2022%20de%20agosto%20en%20Boedo."
+        />
+
         <EventCard
           day="29"
           title="Encuentro Oracular"
@@ -345,25 +357,14 @@ const CalendarSection = () => (
         />
 
         <EventCard
-          day="22"
-          title="Reiki Nivel I"
-          time="14 a 20 hs"
-          location="Boedo (CABA)"
-          description="El inicio de un camino de práctica y transformación personal desde las raíces del Reiki Tradicional Japonés."
-          price="$55.000"
-          image="/Reiki-1.png"
-          link="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20reservar%20mi%20lugar%20para%20el%20Nivel%20I%20de%20Reiki%20del%2022%20de%20agosto%20en%20Boedo."
-        />
-
-        <EventCard
           day="05"
           month="Sep"
           title="Encuentro de Numerología"
           time="15 a 20 hs"
           location="A confirmar"
-          description="Un encuentro dedicado a la Numerología. Próximamente vamos a sumar todos los detalles de la propuesta."
+          description="Una tarde para descubrir el lenguaje de los números, conocerte desde otra mirada y explorar las claves de tu propio camino.."
           price="$60.000"
-          image="/Reiki-imagen.png"
+          image="/numerologia_1.png"
           link="https://wa.me/5491149801624?text=Hola!%20Me%20interesa%20recibir%20informaci%C3%B3n%20sobre%20el%20Encuentro%20de%20Numerolog%C3%ADa%20del%205%20de%20septiembre."
         />
       </div>
